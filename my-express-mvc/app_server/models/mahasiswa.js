@@ -21,5 +21,5 @@ const mahasiswaSchema= new mongoose.Schema({
     }
 });
 
-const Mahasiswa = mongoose.model('Mahasiswa',mahasiswaSchema);
+const Mahasiswa = mongoose.model('Mahasiswa', mahasiswaSchema);
 module.exports = Mahasiswa;

@@ -2,7 +2,7 @@ let mongose = require("mongoose");
 let dbURI =   "mongodb+srv://paw2:si@paw2.iendmj6.mongodb.net/PAWII-SI?retryWrites=true&w=majority&appName=paw2";
 
 mongose.connect(dbURI,{
-    useNewURLParser :true
+    //useNewURLParser :true
 });
 
 mongose.connection.on ("connected",()=>{
