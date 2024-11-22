@@ -1,22 +1,22 @@
 const mongoose = require("mongoose");
 
-const mahasiswaSchema= new mongoose.Schema({
-    nama :{
+const mahasiswaSchema = new mongoose.Schema({
+    nama: {
         type: String,
     },
-    npm : {
-        type : String,
-        require:true,
-    },
-    email:{
+    npm: {
         type: String,
-        require :true,
-        unique : true,
+        required: true,
     },
-    tanggal_lahir:{
-        type : Date,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    aktif :{
+    tanggal_lahir: {
+        type: Date,
+    },
+    aktif: {
         type: Boolean,
     }
 });
