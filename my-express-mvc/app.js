@@ -12,6 +12,11 @@ var mahasiswasRouter = require('./app_server/routes/mahasiswas');
 var housingsRouter = require('./app_server/routes/housings')
 var app = express();
 
+app.use((req, res, next)=>{
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  next();
+})
+
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
 app.set('view engine', 'ejs');

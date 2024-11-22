@@ -7,7 +7,7 @@ import { HousingService } from '../housing.service';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, HousingLocationComponent],
-  templateUrl: './home.component.html',
+  templateUrl: './Home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
