@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HousingLocation } from './housing-location';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HousingService {
-  url = "http://localhost:3000/housing/housing";
-
+  url = "http://localhost:3000/housing";
   constructor() { }
 
   async getAllHousingLocations() : Promise<HousingLocation[]>{
@@ -15,12 +15,38 @@ export class HousingService {
   }
 
   async getHousingLocationById(id: Number) : Promise<HousingLocation | undefined>{
-    const data = await fetch(`${this.url}/${id}`); //http://localhost:3000/housing/1
-    return await data.json() ?? {};
-  }
+    const data = await fetch(`${this.url}/${id}`);
+    return await data.json() ??[];
 
-  submitApplication(firstName: String, lastName: String, 
-    email: String){
-      console.log(firstName, lastName, email);
+  }
+  SubmitApplication(firstName:String, lastName : String, email: String){
+    const apiUrl = 'http://localhost:3000/register';
+    const body = { firstname: firstName, lastname: lastName, email: email };
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      email,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log('Registration successful:', data);
+      alert('Application submitted successfully!');
+    })
+    .catch((error) => {
+      console.error('Error during registration:', error);
+      alert('Failed to submit application.');
+    });
   }
 }

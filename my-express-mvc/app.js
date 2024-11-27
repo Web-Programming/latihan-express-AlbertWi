@@ -10,12 +10,14 @@ var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var mahasiswasRouter = require('./app_server/routes/mahasiswas');
 var housingsRouter = require('./app_server/routes/housings')
+var applyRouter = require ('./app_server/routes/apply')
 var app = express();
 
-app.use((req, res, next)=>{
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-})
+app.post('/register', (req, res) => {
+  // Logging data request di sini
+  console.log('Received POST request to /register');
+  console.log('Request Body:', req.body);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
@@ -27,11 +29,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Allow Cors
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+})
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', mahasiswasRouter);
 app.use('/housing',housingsRouter);
-
+app.use('/register',applyRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

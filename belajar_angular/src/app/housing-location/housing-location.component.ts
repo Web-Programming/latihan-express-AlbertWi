@@ -18,5 +18,5 @@ import { RouterModule } from '@angular/router';
 })
 export class HousingLocationComponent {
   @Input() housingLocation!: HousingLocation
-  readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
+  readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa/'; 
 }
