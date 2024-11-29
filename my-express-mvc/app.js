@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //load mongodb db connection
 require('./app_server/models/db');
-
+ require('dotenv').config();
+require("./app_server/configs/passport"); //load file config
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var mahasiswasRouter = require('./app_server/routes/mahasiswas');
